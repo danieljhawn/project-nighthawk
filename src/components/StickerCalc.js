@@ -23,6 +23,8 @@ function StickerCalc() {
             case "height":
                 setHeight(value)
                 break
+            case "qty":
+                setQty(value)    
             default:
         }
         
@@ -30,6 +32,7 @@ function StickerCalc() {
     }
 
     function calcPrice() {
+        setQty(qty * area)
         setCost(area * basePrice)
     }
 
@@ -50,8 +53,16 @@ function StickerCalc() {
                     type="number"
                     placeholder="0.0"
                 /><br /><br />
+                <input
+                    value={qty}
+                    name="qty"
+                    onChange={handleInputChange}
+                    type="number"
+                    placeholder="100"
+                /><br /><br />
                 {console.log(area)}
                 {console.log(cost)}
+                {console.log(qty)}
             </form>
         
         </div>
