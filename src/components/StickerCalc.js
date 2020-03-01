@@ -12,7 +12,7 @@ function StickerCalc() {
     const basePrice = 0.05;
 
     useEffect(() => { setArea(width * height) }, [width, height])
-    useEffect(() => { calcPrice() }, [area, qty])
+    useEffect(() => { setCost(area * qty * basePrice) }, [area, qty])
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -32,10 +32,10 @@ function StickerCalc() {
 
     }
 
-    function calcPrice() {
-        setQty(qty)
-        setCost(area * qty * basePrice)
-    }
+    // function calcPrice() {
+    //     setQty(qty)
+    //     setCost(area * qty * basePrice)
+    // }
 
     return (
         <div className="p3">
