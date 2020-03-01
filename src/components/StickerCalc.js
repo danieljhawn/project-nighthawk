@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Form } from 'react-bootstrap';
 
 function StickerCalc() {
 
@@ -8,10 +9,10 @@ function StickerCalc() {
     const [height, setHeight] = useState(0);
     const [cost, setCost] = useState(0);
     // const [base, setBase] = useState(0);
-    const basePrice = 2;
+    const basePrice = 0.05;
 
-    useEffect(() => {setArea(width * height)}, [width, height])
-    useEffect(() => {calcPrice()}, [area, qty])
+    useEffect(() => { setArea(width * height) }, [width, height])
+    useEffect(() => { calcPrice() }, [area, qty])
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -24,11 +25,11 @@ function StickerCalc() {
                 break
             case "qty":
                 setQty(value)
-                break    
+                break
             default:
         }
-        
-        
+
+
     }
 
     function calcPrice() {
@@ -37,8 +38,9 @@ function StickerCalc() {
     }
 
     return (
-        <div>
-            <form className="form">
+        <div className="p3">
+            <div>Width</div>
+            <Form className="form">
                 <input
                     value={width}
                     name="width"
@@ -46,6 +48,7 @@ function StickerCalc() {
                     type="number"
                     placeholder="0.0"
                 /><br /><br />
+                <div>height</div>
                 <input
                     value={height}
                     name="height"
@@ -53,6 +56,7 @@ function StickerCalc() {
                     type="number"
                     placeholder="0.0"
                 /><br /><br />
+                <div>Quantity</div>
                 <input
                     value={qty}
                     name="qty"
@@ -60,11 +64,13 @@ function StickerCalc() {
                     type="number"
                     placeholder="100"
                 /><br /><br />
-                {console.log("area - "+[area])}
-                {console.log("qty - "+[qty])}
-                {console.log("cost - $"+[cost])}
-            </form>
-        
+                <div>${cost}</div>
+
+                {console.log("area - " + [area])}
+                {console.log("qty - " + [qty])}
+                {console.log("cost - $" + [cost])}
+            </Form>
+
         </div>
     )
 }
