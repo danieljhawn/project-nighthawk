@@ -1,51 +1,59 @@
-import React, { Component, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SqInchCalc from './SqInchCalc';
-
-
 
 function StickerCalc() {
 
-    const [data, setData] = useState({
-        sqInch: ,
-        totalSqInch: 0
-    })
+    const [area, setArea] = useState(0);
+    const [qty, setQty] = useState(0);
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0);
+    const [cost, setCost] = useState(0);
+    // const [base, setBase] = useState(0);
+    const basePrice = 2;
+
+    useEffect(() => {setArea(width * height)}, [width, height])
+    useEffect(() => {calcPrice()}, [area])
 
     const handleInputChange = event => {
         const { name, value } = event.target
-        const newData = {
-            [name]: value
+        switch (name) {
+            case "width":
+                setWidth(value)
+                break
+            case "height":
+                setHeight(value)
+                break
+            default:
         }
-        setData({ ...data, ...newData });
+        
+        
     }
 
-    const handleFormSubmit = event => {
-        event.preventDefault();
-        setData({
-            sqInch: '',
-            totalSqInch: ''
-        });
-    };
+    function calcPrice() {
+        setCost(area * basePrice)
+    }
 
     return (
         <div>
             <form className="form">
                 <input
-                    value={data.width}
+                    value={width}
                     name="width"
                     onChange={handleInputChange}
-                    type="text"
-                    placeholder=""
-                /><br/><br/>
+                    type="number"
+                    placeholder="0.0"
+                /><br /><br />
                 <input
-                    value={data.height}
+                    value={height}
                     name="height"
                     onChange={handleInputChange}
-                    type="text"
-                    placeholder=""
-                /><br/><br/>
-                <SqInchCalc />
+                    type="number"
+                    placeholder="0.0"
+                /><br /><br />
+                {console.log(area)}
+                {console.log(cost)}
             </form>
-
+        
         </div>
     )
 }
