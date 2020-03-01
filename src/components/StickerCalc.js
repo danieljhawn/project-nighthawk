@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import SqInchCalc from './SqInchCalc';
 
 function StickerCalc() {
 
@@ -12,7 +11,7 @@ function StickerCalc() {
     const basePrice = 2;
 
     useEffect(() => {setArea(width * height)}, [width, height])
-    useEffect(() => {calcPrice()}, [area])
+    useEffect(() => {calcPrice()}, [area, qty])
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -24,7 +23,8 @@ function StickerCalc() {
                 setHeight(value)
                 break
             case "qty":
-                setQty(value)    
+                setQty(value)
+                break    
             default:
         }
         
@@ -32,8 +32,8 @@ function StickerCalc() {
     }
 
     function calcPrice() {
-        setQty(qty * area)
-        setCost(area * basePrice)
+        setQty(qty)
+        setCost(area * qty * basePrice)
     }
 
     return (
@@ -60,9 +60,9 @@ function StickerCalc() {
                     type="number"
                     placeholder="100"
                 /><br /><br />
-                {console.log(area)}
-                {console.log(cost)}
-                {console.log(qty)}
+                {console.log("area - "+[area])}
+                {console.log("qty - "+[qty])}
+                {console.log("cost - $"+[cost])}
             </form>
         
         </div>
