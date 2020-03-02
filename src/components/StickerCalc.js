@@ -31,15 +31,30 @@ function StickerCalc() {
         }
     }
 
-    function resetBase() {
+    // function resetBase() {
+    //     switch(qty) {
+    //         case ((qty * area) <= 100) :
+    //           setBase(0.1)
+    //           break;
+    //         case (((qty * area) > 100) & (qty * area) < 1000):
+    //           setBase(0.05)
+    //           break;
+    //         case (((qty * area) > 1000) & (qty * area) < 10000):
+    //           setBase(0.025)
+    //           break;
+    //         default:
+    //           // code block
+    //       }
+    // };
+    function resetBase(qty) {
         switch(qty) {
-            case ((qty * area) <= 100) :
+            case (qty <= 100) :
               setBase(0.1)
               break;
-            case (((qty * area) > 100) & (qty * area) < 1000):
+            case ((qty > 100) & (qty < 1000)):
               setBase(0.05)
               break;
-            case (((qty * area) > 1000) & (qty * area) < 10000):
+            case ((qty > 1000) & (qty < 10000)):
               setBase(0.025)
               break;
             default:
