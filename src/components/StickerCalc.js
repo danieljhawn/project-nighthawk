@@ -3,16 +3,18 @@ import { Form } from 'react-bootstrap';
 
 function StickerCalc() {
 
-    const [area, setArea] = useState(0);
-    const [qty, setQty] = useState(0);
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
+    const [area, setArea] = useState(0);
+    const [qty, setQty] = useState(0);
+    const [area2, setArea2] = useState(0);
     const [cost, setCost] = useState(0);
     const [base, setBase] = useState(0.1);
     // const base = 0.05;
 
     useEffect(() => { setArea(width * height) }, [width, height])
-    useEffect(() => { setCost(area * qty * base) }, [area, qty, base])
+    useEffect(() => { setArea2(area * qty) }, [area, qty])
+    useEffect(() => { setCost(area2 * base) }, [area2, base])
     useEffect(() => { resetBase()}, [qty])
 
     const handleInputChange = event => {
@@ -31,32 +33,14 @@ function StickerCalc() {
         }
     }
 
-    // function resetBase() {
-    //     switch(qty) {
-    //         case ((qty * area) <= 100) :
-    //           setBase(0.1)
-    //           break;
-    //         case (((qty * area) > 100) & (qty * area) < 1000):
-    //           setBase(0.05)
-    //           break;
-    //         case (((qty * area) > 1000) & (qty * area) < 10000):
-    //           setBase(0.025)
-    //           break;
-    //         default:
-    //           // code block
-    //       }
-    // };
-    function resetBase(qty) {
+    function resetBase() {
         switch(qty) {
-            case (qty <= 100) :
+            case (area2) > 100 :
+                setBase(0.05)
+              break
+            case (area2) < 100 :
               setBase(0.1)
-              break;
-            case ((qty > 100) & (qty < 1000)):
-              setBase(0.05)
-              break;
-            case ((qty > 1000) & (qty < 10000)):
-              setBase(0.025)
-              break;
+              break
             default:
               // code block
           }
@@ -95,6 +79,7 @@ function StickerCalc() {
                     {console.log("area - " + [area])}
                     {console.log("qty - " + [qty])}
                     {console.log("base - $" + [base])}
+                    {console.log("total area - " + [area2])}
                     {console.log("cost - $" + [cost])}
                 </Form>
 
