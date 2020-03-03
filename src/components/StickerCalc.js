@@ -7,15 +7,15 @@ function StickerCalc() {
     const [height, setHeight] = useState(0);
     const [area, setArea] = useState(0);
     const [qty, setQty] = useState(0);
-    const [area2, setArea2] = useState(0);
+    const [totalArea, setTotalArea] = useState(0);
     const [cost, setCost] = useState(0);
-    const [base, setBase] = useState(0.1);
+    const [base, setBase] = useState(0.013);
     // const base = 0.05;
 
     useEffect(() => { setArea(width * height) }, [width, height])
-    useEffect(() => { setArea2(area * qty) }, [area, qty])
-    useEffect(() => { setCost(area2 * base) }, [area2, base])
-    useEffect(() => { resetBase()}, [qty])
+    useEffect(() => { setTotalArea(area * qty) }, [area, qty])
+    useEffect(() => { setCost(totalArea * base) }, [totalArea, base])
+    useEffect(() => { setBase(resetBase) }, [])
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -33,58 +33,60 @@ function StickerCalc() {
         }
     }
 
-    function resetBase() {
-        switch(qty) {
-            case (area2) > 100 :
+    function resetBase(totalArea) {
+        switch (totalArea) {
+            case (totalArea) > 100:
                 setBase(0.05)
-              break
-            case (area2) < 100 :
-              setBase(0.1)
-              break
+                break
+            case (totalArea) < 100:
+                setBase(0.1)
+                break
             default:
-              // code block
-          }
+            // code block
+        }
     };
 
 
-        return (
-            <div className="p3">
-                <div>Width</div>
-                <Form className="form">
-                    <input
-                        value={width}
-                        name="width"
-                        onChange={handleInputChange}
-                        type="number"
-                        placeholder="0.0"
-                    /><br /><br />
-                    <div>height</div>
-                    <input
-                        value={height}
-                        name="height"
-                        onChange={handleInputChange}
-                        type="number"
-                        placeholder="0.0"
-                    /><br /><br />
-                    <div>Quantity</div>
-                    <input
-                        value={qty}
-                        name="qty"
-                        onChange={handleInputChange}
-                        type="number"
-                        placeholder="100"
-                    /><br /><br />
-                    <div>${cost}</div>
+    return (
+        <div className="p3">
+            <div>Width</div>
+            <Form className="form">
+                <input
+                    value={width}
+                    name="width"
+                    onChange={handleInputChange}
+                    type="number"
+                    placeholder="0.0"
+                /><br /><br />
+                <div>height</div>
+                <input
+                    value={height}
+                    name="height"
+                    onChange={handleInputChange}
+                    type="number"
+                    placeholder="0.0"
+                /><br /><br />
+                <div>Quantity</div>
+                <input
+                    value={qty}
+                    name="qty"
+                    onChange={handleInputChange}
+                    type="number"
+                    placeholder="100"
+                /><br /><br />
+                <div>Total Cost - ${cost}</div>
+                <div>Sticker area - {area}</div>
+                <div>Total area - {totalArea}</div>
 
-                    {console.log("area - " + [area])}
-                    {console.log("qty - " + [qty])}
-                    {console.log("base - $" + [base])}
-                    {console.log("total area - " + [area2])}
-                    {console.log("cost - $" + [cost])}
-                </Form>
+                {console.log("area - " + [area])}
+                {console.log("qty - " + [qty])}
+                {console.log("base - $" + [base])}
+                {console.log("total area - " + [totalArea])}
+                {console.log("cost - $" + [cost])}
+            </Form>
 
-            </div>
-        )
-    }
+        </div>
+    )
+}
 
-    export default StickerCalc
+export default StickerCalc
