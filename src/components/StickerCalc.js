@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 
 function StickerCalc() {
@@ -26,10 +26,30 @@ function StickerCalc() {
 
     function resetBase(totalArea) {
         switch (true) {
-            case (totalArea <= 2500):
-                return 0.0457;
-            case (totalArea > 2500):
-                return 0.0402;
+            case (totalArea < 2500):
+                console.log("0.0381")
+                return 0.0381;
+            case (totalArea < 5000):
+                console.log("0.0335")
+                return 0.0335;
+            case (totalArea < 7500):
+                console.log("0.0231")
+                return 0.0231;
+            case (totalArea < 10000):
+                console.log("0.0208")
+                return 0.0208;
+            case (totalArea < 15000):
+                console.log("0.0196")
+                return 0.0196;
+            case (totalArea < 18000):
+                console.log("0.0185")
+                return 0.0185;
+            case (totalArea < 21000):
+                console.log("0.0173")
+                return 0.0173;
+            case (totalArea < 25000):
+                console.log("0.0168")
+                return 0.0168;
             default:
                 return 0;
         }
@@ -53,7 +73,9 @@ function StickerCalc() {
         onChange = { handleInputChange }
         type = "number"
         placeholder = "0.0" /
-        > < br / > < br / >
+        >
+        <
+        br / > < br / >
         <
         div > height < /div> <
         input value = { height }
@@ -61,7 +83,9 @@ function StickerCalc() {
         onChange = { handleInputChange }
         type = "number"
         placeholder = "0.0" /
-        > < br / > < br / >
+        >
+        <
+        br / > < br / >
         <
         div > Quantity < /div> <
         input value = { qty }
@@ -69,7 +93,9 @@ function StickerCalc() {
         onChange = { handleInputChange }
         type = "number"
         placeholder = "100" /
-        > < br / > < br / >
+        >
+        <
+        br / > < br / >
         <
         div > Base Price - $ { base } < /div> <
         div > Total Cost - $ { cost } < /div> <
