@@ -47,11 +47,11 @@ function StickerCalc() {
             case (totalArea < 21000):
                 console.log("0.0173")
                 return 0.0173;
-            case (totalArea < 25000):
+            case (totalArea <= 25000):
                 console.log("0.0168")
                 return 0.0168;
             default:
-                return 0;
+                return "Please email us your artwork for a quote.";
         }
     };
 
