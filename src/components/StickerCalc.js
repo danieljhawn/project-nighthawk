@@ -5,17 +5,8 @@ function StickerCalc() {
 
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
-    const [area, setArea] = useState(0);
     const [qty, setQty] = useState(0);
-    const [totalArea, setTotalArea] = useState(0);
-    const [cost, setCost] = useState(0);
-    const [base, setBase] = useState(0.013);
-    // const base = 0.05;
-
-    useEffect(() => { setArea(width * height) }, [width, height])
-    useEffect(() => { setTotalArea(area * qty) }, [area, qty])
-    useEffect(() => { setBase(resetBase) }, [qty, totalArea])
-    useEffect(() => { setCost(totalArea * base) }, [totalArea, base])
+  
 
     const handleInputChange = event => {
         const { name, value } = event.target
@@ -34,23 +25,25 @@ function StickerCalc() {
     }
 
     function resetBase(totalArea) {
-        switch (totalArea) {
+        switch (true) {
             case (totalArea < 100):
-                setBase(0.1)
-                console.log("less than a hundo")
-                break
+                return 0.1;
             case (totalArea > 100):
-                setBase(0.05)
-                console.log("less than a hundo")
-                break
+                return 0.05;
             default:
-                setBase(69)
+                return 69;
         }
     };
 
 
+    const area =  width * height;
+    const totalArea = area * qty;
+    const base = resetBase(totalArea);
+    const cost = totalArea * base;
+
     return (
         <div className="p3">
+            
             <div>Width</div>
             <Form className="form">
                 <input
@@ -78,7 +71,7 @@ function StickerCalc() {
                 /><br /><br />
                 <div>Base Price - ${base}</div>
                 <div>Total Cost - ${cost}</div>
-                <div>Sticker area - {area}</div>
+                <div>Sticker area - { area }</div>
                 <div>Total area - {totalArea}</div>
 
                 {console.log("area - " + [area])}
