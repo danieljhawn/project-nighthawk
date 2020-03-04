@@ -6,6 +6,7 @@ function StickerCalc() {
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
     const [qty, setQty] = useState(0);
+    const [shape, setShape] = useState("Select Shape");
 
 
     const handleInputChange = event => {
@@ -20,9 +21,20 @@ function StickerCalc() {
             case "qty":
                 setQty(value)
                 break
+            case "Rectangle":
+                setShape(value)
+                break
+            case "Simple Shape":
+                setShape(value)
+                break
+            case "Custom Cut":
+                setShape(value)
+                break
             default:
         }
     }
+
+
 
     function resetBase(totalArea) {
         switch (true) {
@@ -86,6 +98,17 @@ function StickerCalc() {
         >
         <
         br / > < br / >
+
+        <
+        select >
+        <
+        option value = { shape }
+        onChange = { handleInputChange } > Select Shape < /option> <
+        option value = "rectangle" > Rectangle < /option> <
+        option value = "Simple Shape" > Simple Shape < /option> <
+        option value = "Custom Cut" > Custom Cut < /option> < /
+        select >
+
         <
         div > Quantity < /div> <
         input value = { qty }
@@ -96,11 +119,16 @@ function StickerCalc() {
         >
         <
         br / > < br / >
+
+        <
+        input type = "file" / > < br / > < br / >
+
         <
         div > Base Price - $ { base } < /div> <
         div > Total Cost - $ { cost } < /div> <
         div > Sticker area - { area } < /div> <
-        div > Total area - { totalArea } < /div>
+        div > Total area - { totalArea } < /div> <
+        div > Shape - { shape } < /div>
 
         { console.log("area - " + [area]) } { console.log("qty - " + [qty]) } { console.log("base - $" + [base]) } { console.log("total area - " + [totalArea]) } { console.log("cost - $" + [cost]) } <
         /Form>
