@@ -62,7 +62,7 @@ function StickerCalc() {
     const cost = totalArea * base;
 
     return ( <
-        div className = "p3" >
+        div className = "p-3 bg-light" >
 
         <
         div > Width < /div> <
