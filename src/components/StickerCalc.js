@@ -68,6 +68,14 @@ function StickerCalc() {
         }
     };
 
+    function over25k(totalArea) {
+        if (totalArea > 25000)
+        return "Please email us for a quote"
+        else
+        return totalArea
+    }
+
+
     const area = width * height;
     const totalArea = area * qty;
     const base = resetBase(totalArea);
@@ -115,10 +123,9 @@ function StickerCalc() {
                         <input type="file" className="shadow rounded" />< br />< br />
 
                         <div> Shape - {shape}</div>
-                        <div> Base - {base}</div>
-                        <div> Sticker Area - {area}</div>
-                        <div> Total Area - {totalArea}</div>
-                        <div><strong> Total Cost - $ {totalCost} </strong></div>
+                        <div> Sticker Area - {area} inches</div>
+                        <div> Total Area - {totalArea} inches</div>
+                        <div><strong> Total Cost - ${over25k(totalArea)} </strong></div>
 
                         {console.log("area - " + [area])}
                         {console.log("qty - " + [qty])}
