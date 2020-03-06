@@ -47,7 +47,7 @@ function StickerCalc() {
             case (totalArea <= 25000):
                 return 0.0168;
             default:
-                return "Please email us your artwork for a quote.";
+                return 0;
         }
     };
 
@@ -59,6 +59,10 @@ function StickerCalc() {
                 return 1.2;
             case (shape === "Custom Cut"):
                 return 1.4;
+            case (shape === "Select Shape"):
+                return 0;
+            case (shape === "Please Select A Shape"):
+                return 0;
             default:
                 return 0;
         }
@@ -111,6 +115,7 @@ function StickerCalc() {
                         <input type="file" className="shadow rounded" />< br />< br />
 
                         <div> Shape - {shape}</div>
+                        <div> Base - {base}</div>
                         <div> Sticker Area - {area}</div>
                         <div> Total Area - {totalArea}</div>
                         <div><strong> Total Cost - $ {totalCost} </strong></div>
@@ -120,7 +125,7 @@ function StickerCalc() {
                         {console.log("base - $" + [base])}
                         {console.log("total area - " + [totalArea])}
                         {console.log("cost - $" + [cost])}
-                        {console.log("tota cost - $" + [totalCost])}
+                        {console.log("total cost - $" + [totalCost])}
                         {console.log("shape - " + [shape])}
                     </Form>
                 </div>
