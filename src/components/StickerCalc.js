@@ -72,7 +72,7 @@ function StickerCalc() {
         if (totalArea > 25000)
         return "Please email us for a quote"
         else
-        return totalArea
+        return Math.ceil(cost)
     }
 
 
